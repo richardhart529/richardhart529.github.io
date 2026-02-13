@@ -1,0 +1,239 @@
+* {
+    user-select: none;
+}
+
+#cookie {
+    transition:0.3s;
+ 
+
+    &:active {
+        transform: scale(1.3,1.3);
+    }
+}
+
+.test {
+    position:absolute;
+    z-index: 1;
+    color:white;
+    font-size: 50;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+@keyframes example {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translateY(-37.5px);
+    }
+
+    100% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+}
+
+@keyframes nomoney {
+
+    0% {
+        transition: 0.1s;
+        transform:translateX(0px);
+        transform: scale(1.01,1.01);
+        
+    }
+
+    20% {
+        background-color: rgb(255, 0, 0);
+        transform: scale(1.01,1.01) translateX(20px);
+        
+    }
+
+    40% {
+        background-color: rgb(255, 0, 0);
+        transform: scale(1.01,1.01) translateX(0px);
+        
+    }
+
+    60% {
+        background-color: rgb(255, 0, 0);
+         transform: scale(1.01,1.01) translateX(-20px); 
+    }
+
+    80% {
+        background-color: rgba(255, 0, 0, 0.692);
+        transform: scale(1.01,1.01) translateX(0px);
+        
+    }
+
+    100% {
+        background-color: rgba(255, 0, 0, 0.692);
+        transform: scale(1,1) translateX(0px);
+    }
+}
+
+#body {
+    display:grid;
+    grid-template-columns: auto auto;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#cookiearea {
+    border-style: solid;
+    padding:10px;
+    background-image: url("picnicbg.jpg");
+}
+
+#towershoparea {
+    border-style:solid solid solid none;
+    padding:5px;
+    background-color:rgba(0, 0, 255, 0.719);
+}
+
+#towers {
+    display: flexbox;
+    padding-left:15px;
+    margin-top: 3px;
+}
+
+.towers {
+    border-style: solid;
+    margin:3px;
+    padding-left:10px;
+    background-color: rgba(0, 255, 255, 0.486);
+    cursor: pointer;
+    transition:1s;
+}
+
+.unbuyable {
+    background-color: rgb(194, 57, 57);
+    color:rgba(0, 0, 0, 0.445);
+    border-style: solid;
+    margin:3px;
+    padding-left:10px;
+    cursor: pointer;
+}
+.upgrade-item {
+    padding:3px;
+    border-style: solid;
+    width:50px;
+    height:50px;
+    margin-right:20px;
+    opacity: 1;
+    background-color: rgb(128, 236, 236);
+}
+.upgrade-item h1{
+    font-size: 20px;
+    font-weight: bold;
+}
+.upgrade-item p{
+    display: block;
+    width: 200px;
+}
+#upgrades {
+    margin-left: 3px;
+    padding-left: 15px;
+}
+/* Got rid of some of the &:'s in upgrade css, as its just shorthand for parent:keyword
+   Example: 
+   .upgrade:hover {}
+   is same as
+   .upgrade {
+       &:hover {}
+   }
+*/
+.upgrade-desc {
+    transform: translateX(0);
+    position: relative;
+    z-index: 100;
+    display: none;
+    border-style: solid;
+    background-color: rgb(111, 111, 255);
+    width: fit-content;
+    padding:15px;
+}
+.upgrade-item {
+    display: inline-block;
+    position: relative;
+}
+
+.upgrade-item:hover .upgrade-desc {
+    display: block;
+    position:absolute;
+    top:100%;
+    left: -3px;
+}
+.upgrade-img:hover{
+    animation: animate-test 1s forwards; /* forwards keeps the animation at the end */
+}
+
+.upgrade-img {
+    width:50px;
+}
+@keyframes animate-test{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.5);
+    }
+}
+
+#towers::-webkit-scrollbar {
+    display:none
+}
+
+.eCookie {
+    position:absolute;
+    z-index: 1;
+    cursor: pointer;
+}
+
+@keyframes e-cookie {
+    0%{
+        transform:scale(1);
+        filter: opacity(0);
+    }
+
+    10% {
+        filter:opacity(1);
+        transform:scale(1.3) rotate(-15deg);
+    }
+
+    20% {
+        transform:scale(1.6) rotate(0deg);
+    }
+
+    30% {
+        transform:scale(1.9) rotate(15deg);
+    }
+
+    40% {
+        transform:scale(2) rotate(0deg);
+    }
+
+    50% {
+        transform:scale(1.8) rotate(-15deg);
+    }
+
+    60% {
+        transform:scale(2) rotate(0deg);
+        filter:opacity(1);
+    }
+
+    100% {
+        transform:scale(0.1) rotate(15deg);
+        filter:opacity(0);
+    }
+}
+
+#cookie-shop {
+    display:none;
+}
+
+.cookie-shop-upgrades {
+    display:none;
+}
+

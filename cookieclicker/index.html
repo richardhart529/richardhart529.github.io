@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <script src = "indexscript.js" defer></script>
+        <link rel = "stylesheet" href = "indexss.css">
+        <title>cookie clicker</title>
+        <link rel="icon" type="image/x-icon" href="cookie.jpg">
+
+
+    </head>
+
+
+    <body id = "body">
+
+            <div id = "cookiearea">
+                <h1>Cookies:</h1>
+                <h1 id = "cookienum">0</h1>
+                <h3>Cookies Per Second:</h3>
+                <h3 id = "cps-display">0</h3>
+                <img draggable="false" src = "cookie.jpg" alt = "cookie" width = "300" id = "cookie">
+                
+            </div>
+            </div>
+            
+            <div id = "towershoparea">
+                <h1>buy items here</h1>
+                <h3 id = "clicks-display">clicks: 0</h3>
+                <div id = "upgrades" style = "display: inline-flex;">
+                    <div id = "double-click" class = "upgrade-item" onclick="upgradeBuy(40, 'cookies', this, [1,1 , 'add'], ['hdayclick'], false, true)">
+                        <img src = "cursor.png" alt = "cursor" id = "double-click-icon" class="upgrade-img">
+                        <div id = "double-click-desc" class = "upgrade-desc">
+                            <h1>Double Click</h1>
+                            <p>+1 cookies per click</p>
+                            <h4>price: 40 cookies</h4>
+                        </div>
+                    </div>
+                    <div id = "hdayclick" class = "upgrade-item" onclick="upgradeBuy(100000, 'cookies', this, [1, 4, 'add'], 'null', true, true)" style = "display:none">
+                        <img src = "hworkpic.png" alt = "hdayclickpic" id = "h-day-click-icon" class="upgrade-img">
+                        <div id = "h-day-click-desc" class = "upgrade-desc">
+                            <h1>An Honest Day's Click</h1>
+                            <p>+4 cookie per click, and unlocks a special currency that allows for better upgrades to be bought</p>
+                            <h4>price: 100,000 cookies</h4>
+                        </div>
+                    </div>
+                    <!-- Replace this with your second powerup; just duplicated first one for testing-->
+                    <div id = "bif-cookies" class = "upgrade-item" onclick="upgradeBuy(2000, 'cookies', this, [3, 2, 'mult'], ['trif-cookies'], false, true)">
+                        <img src = "bifurcatingcookie.png" alt = "bifurcating cookie" id = "bif-cookies-icon" class="upgrade-img">
+                        <div id = "bif-cookies-desc" class = "upgrade-desc">
+                            <h1>Bifurcating Cookies</h1>
+                            <p>x2 all cps</p>
+                            <h4>price: 2,000 cookies</h4>
+                        </div>
+                    </div>
+                    <div id = "trif-cookies" class = "upgrade-item" onclick="upgradeBuy(10000, 'cookies', this, [3, 3, 'mult'], ['quad-cookies'], false, true)" style = "display:none;">
+                        <img src = "trifurcatingcookie.png" alt = "trifurcating cookie" id = "trif-cookies-icon" class="upgrade-img">
+                        <div id = "trif-cookies-desc" class = "upgrade-desc">
+                            <h1>Trifurcating Cookies</h1>
+                            <p>x3 all cps</p>
+                            <h4>price: 30,000 cookies</h4>
+                        </div>
+                    </div>
+                    <div id = "quad-cookies" class = "upgrade-item" onclick = "upgradeBuy(10000, 'clicks', this, [3, 3, 'add'], 'null', false, true)" style = "display:none;">
+                        <img src = "quadcookie.png" alt = "quadfurcating cookie" id = "quad-cookies-icon" class = "upgrade-img">
+                        <div id = "quad-cookies-desc" class = "upgrade-desc">
+                            <h1>Quadfurcating cookies</h1>
+                            <p>4x all cps</p>
+                            <h4>price: 10,000 clicks</h4>
+                        </div>
+
+                    </div>
+                    <div id = "swarm-clicks" class = "upgrade-item click-upgrades" onclick = "upgradeBuy(100, 'clicks', this, [1, 5, 'add'], 'null', false, true)">
+                        <img src = "swarmclicks.png" alt = "swarmclicks" id = "swarm-clicks-icon" class = "upgrade-img">
+                        <div id = "swarm-clicks-desc" class = "upgrade-desc">
+                            <h1>Swarm of Clicks</h1>
+                            <p>+5 cookies per click</p>
+                            <h4>price: 100 clicks</h4>
+                        </div>
+                    </div>
+                    <div id = "refined-cursors" class = "upgrade-item click-upgrades" onclick = "upgradeBuy(1000, 'clicks', this, [2, 2, 'mult'], 'null', false, true)" >
+                        <img src = "refinedcursors.png" alt = "refined cursors" id = "refined-cursors-icon" class = "upgrade-img">
+                        <div id = "refined-cursors-desc" class = "upgrade-desc">
+                            <h1>Refined Cursors</h1>
+                            <p>x2 cookies per click</p>
+                            <h4>price: 1,000 clicks</h4>
+                        </div>
+                    </div>
+                    <div id = "gamdice" class = "upgrade-item" onclick = "upgradeBuy(10000000, 'cookies', this, 'null', 'null', true, false)">
+                        <img src = "gamdice.png" alt = "gambler's dice" id = "refined-cursors-icon" class = "upgrade-img">
+                        <div id = "gam-dice-desc" class = "upgrade-desc">
+                            <h1>Gambler's Lucky Dice</h1>
+                            <p>multiplies a random buff by a random amount. Can divide buff as well</p>
+                            <h4>price: 10,000,000 cookies</h4>
+                        </div>
+                    </div>
+                </div>
+                <div id = "cookie-shop">
+                    <h1>cookie shop</h1>
+                    <div id = "cookie-shop-items" style = "display:inline-flex;margin-left: 20px;">
+                        <div id = "bej-cookie" class = "upgrade-item" onclick = "cookieUnlock('bejeweled',this,2000)">
+                            <img src = "bejcookie.png" alt = "bejewled cookie" id = "bejcookie-icon" width = "50" class = "upgrade-img">
+                            <div id = "bej-cookies-desc" class = upgrade-desc>
+                                <h1>Bejeweled cookie</h1>
+                                <h1 style = "color:rgb(0, 51, 145) !important;font-weight: bold !important;background-color: rgba(0, 140, 255, 0.363);">rare cookie</h1>
+                                <p>Effects: boosts cps and cookies per click by 1.5x for 10 seconds and grants 60 seconds of cookies</p>
+                                <br><p>Chances: 1/5000 per tick</p>
+                                <h4>price: 2,000</h4>
+                            </div>
+                        </div>
+
+                        <div class = "upgrade-item" id = "chronocookie" onclick="cookieUnlock('chrono',this, 10000)">
+                            <img src = "chronocookie.png" alt = "chronocookie" width = "50" id = "chronocookie-icon" class = "upgrade-img">
+                            <div class = "upgrade-desc">
+                                <h1>Chronocookie</h1>
+                                <h1 style = "color:rgb(116, 0, 0) !important;font-weight: bold !important;background-color: rgba(255, 0, 0, 0.363);">super cookie</h1>
+                                <p>Effects: after 5 seconds reverts cookie count to how much it was when clicked</p>
+                                <br><p>Chances: 1/20000 per tick</p>
+                                <h4>price: 10,000</h4>
+                            </div>
+                        </div>
+
+                        <div class = "upgrade-item" id = "protcookie" onclick = "cookieUnlock('prot', this, 50000)">
+                            <img src = "protcookie.png" alt = "protcookie" width = "50" id = "protcookie-icon" class = "upgrade-img">
+                            <div class = "upgrade-desc">
+                                <h1>Protein Bar Cookie</h1>
+                                <h1 style = "color:rgb(116, 0, 0) !important;font-weight: bold !important;background-color: rgba(255, 0, 0, 0.363);">super cookie</h1>
+                                <p>Effects: boosts clicks per click by 2x for 10 seconds (requires An Honest Day's Click upgrade to work)</p>
+                                <br><p>Chances: 1/50000 per tick</p>
+                                <h4>price: 50,000</h4>
+                            </div>
+
+                        </div>
+                        <div class = "upgrade-item" id = "wormcookie" onclick = "cookieUnlock('prot', this, 10000000)">
+                            <img src = "wormcookie.png" alt = "wormcookie" width = "50" id = "wormcookie-icon" class = "upgrade-img">
+                            <div class = "upgrade-desc">
+                                <h1>Wormhole Cookie</h1>
+                                <h1 style = "color:rgb(227, 133, 255) !important;font-weight: bold !important;background-color: rgba(255, 0, 255, 0.363);">ultra cookie</h1>
+                                <p>Effects: instantly grants 2 months worth of your cps, but can only be spent in 1 second</p>
+                                <br><p>Chances: 1/10,000,000 per tick</p>
+                                <h4>price: 10,000,000</h4>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div id = "towers" style = "overflow-y:scroll;height:80vh;">
+                    <div id = "gnomes" class = "towers" onclick = "placeTower(30, this, 'gnomes', 'gnomes-owned', 'gnomes-price')">
+                        <h3>gnomes</h3>
+                        <i>small but powerful. they require lots of shaving cream</i>
+                        <h4>stats: 0.5 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "gnomes-price">Price: 30 cookies</h2>
+                        <h3 id = "gnomes-owned">owned: none</h3>
+                    </div>
+                    <div id = "gnome-mines" class = "unbuyable" onclick = "placeTower(50, this, 'mines', 'gnome-mines-owned', 'gnome-mines-price')">
+                        <h3>gnome mines</h3>
+                        <i>mines for gnomes to work in. Stuffy, but nicely scented.</i>
+                        <h4>buffs: 5% more cookies from gnomes per mine owned</h4>
+                        <p id = "current-effects-gnome-mines">current effects: generating 0 additional cookies per second from gnomes</p>
+                        <h2 id = "gnome-mines-price">Price: 50 cookies</h2>
+                        <h3 id = "gnome-mines-owned">owned: none</h3>
+                    </div>
+                    <div id = "eldrich-god" class = "towers" onclick = "placeTower(600, this, 'eGods', 'e-gods-owned', 'e-gods-price')">
+                        <h3>Eldrich God</h3>
+                        <i>an Eldrich God from another dimension</i>
+                        <h4>stats: 10 cps</h4>
+                        <h4>buffs: unlocks eldrich cookies</h4>
+                        <h2 id = "e-gods-price">Price: 400 cookies</h2>
+                        <h3 id = "e-gods-owned">owned: none</h3>
+                    </div>
+                    <div id = "cookie-merchant" class = "towers" onclick = "cMerchPlace()">
+                        <h3>Cookie Merchant</h3>
+                        <i>a friendly cookie merchant that has an unsettling amount of rare cookies for sale</i>
+                        <h4>buffs: unlocks cookie shop</h4>
+                        <h2>Price: 750 cookies</h2>
+                        <h3 id = "c-merch-owned">owned: none</h3>
+                    </div>
+                    <div id = "cookie-holes" class = "towers" onclick = "placeTower(200000, this, 'holes', 'holes-owned', 'holes-price')">
+                        <h3>Cookie Holes</h3>
+                        <i>a mysterious hole in the ground with tons of cookies inside</i>
+                        <h4>stats: 100 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "holes-price">Price: 5,000 cookies</h2>
+                        <h3 id = "holes-owned">owned: none</h3>
+                    </div>
+                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(100000, this, 'pyr', 'pyrs-owned', 'pyr-price')">
+                        <h3>Cookie Pyramid Scheme</h3>
+                        <i>while immoral, its an easy way to make money.</i>
+                        <h4>stats: 50 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "pyr-price">Price: 100,000 cookies</h2>
+                        <h3 id = "pyrs-owned">owned: none</h3>
+                    </div>
+                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(3000, this, 'pyr-vict', 'pyrvict-owned', 'pyrvict-price')">
+                        <h3>Cookie Pyramid Scheme Victim</h3>
+                        <i>poor suckers who were more than happy to pledge their cookies to you.</i>
+                        <h4>stats: none</h4>
+                        <h4>buffs: 1.1x Pyramid Scheme cps</h4>
+                        <h2 id = "pyrvict-price">Price: 3,000 cookies</h2>
+                        <h3 id = "pyrvict-owned">owned: none</h3>
+                    </div>
+                    <div id = "ant" class = "towers" onclick = "placeTower(10000000, this, 'ant', 'ant-owned', 'ant-price')">
+                        <h3>Ant</h3>
+                        <i>just an ant</i>
+                        <h4>stats: 10,000 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "ant-price">Price: 1,000,000 cookies</h2>
+                        <h3 id = "ant-owned">owned: none</h3>
+                    </div>
+                    <div id = "chemtrails" class = "towers" onclick = "placeTower(20000000, this, 'chemt', 'chemt-owned', 'chemt-price')">
+                        <h3>Cookie Chemtrails</h3>
+                        <i>creates chemtrails to influence the weather and make it rain cookies</i>
+                        <h4>stats: 60,000 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "chemt-price">Price: 20,000,000 cookies</h2>
+                        <h3 id = "chemt-owned">owned: none</h3>
+                    </div>
+                    <div id = "ovens" class = "towers" onclick = "placeTower(300000000, this, 'ovens', 'ovens-owned', 'oven-price')">
+                        <h3>very very big ovens</h3>
+                        <i>these are very big ovens</i>
+                        <h4>stats: 700,000 cps</h4>
+                        <h4>buffs: none</h4>
+                        <h2 id = "oven-price">Price: 300,000,000</h2>
+                        <h3 id = "ovens-owned">owned: none</h3>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+    </body>
+</html>

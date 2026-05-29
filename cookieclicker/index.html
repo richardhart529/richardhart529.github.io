@@ -83,12 +83,23 @@
                             <h4>price: 1,000 clicks</h4>
                         </div>
                     </div>
-                    <div id = "gamdice" class = "upgrade-item" onclick = "upgradeBuy(10000000, 'cookies', this, 'null', 'null', true, false)">
-                        <img src = "gamdice.png" alt = "gambler's dice" id = "refined-cursors-icon" class = "upgrade-img">
+                    <div id = "gamdice" class = "upgrade-item" onclick = "upgradeBuy(100000000, 'cookies', this, 'null', 'null', true, false)">
+                        <img src = "gamdice.png" alt = "gambler's dice" id = "gam-dice-icon" class = "upgrade-img">
                         <div id = "gam-dice-desc" class = "upgrade-desc">
                             <h1>Gambler's Lucky Dice</h1>
                             <p>multiplies a random buff by a random amount. Can divide buff as well</p>
-                            <h4>price: 10,000,000 cookies</h4>
+                            <h4>price: 100,000,000 cookies</h4>
+                        </div>
+                    </div>
+                    <div id = "gamloadeddice" class = "upgrade-item" onclick = "upgradeBuy(100000000, 'cookies', this, 'null', 'null', true, false)">
+                        <img src = "gamdice.png" id = "gam-loaded-dice-icon" class = "upgrade-img">
+                        <div id = "gam-loaded-dice-desc" class = "upgrade-desc">
+                            <h1>
+                                Gambler's Loaded Dice
+                            </h1>
+                            <p>increases a random buff by 10%</p>
+                            <h4>price: 100,000,000 cookies</h4>
+
                         </div>
                     </div>
                 </div>
@@ -143,7 +154,7 @@
 
                 </div>
                 <div id = "towers" style = "overflow-y:scroll;height:80vh;">
-                    <div id = "gnomes" class = "towers" onclick = "placeTower(30, this, 'gnomes', 'gnomes-owned', 'gnomes-price')">
+                    <div id = "gnomes" class = "towers" onclick = "placeTower(30, this, 'gnomes', 'gnomes-owned', 'gnomes-price', 'null', 'null', 'null')">
                         <h3>gnomes</h3>
                         <i>small but powerful. they require lots of shaving cream</i>
                         <h4>stats: 0.5 cps</h4>
@@ -151,15 +162,15 @@
                         <h2 id = "gnomes-price">Price: 30 cookies</h2>
                         <h3 id = "gnomes-owned">owned: none</h3>
                     </div>
-                    <div id = "gnome-mines" class = "unbuyable" onclick = "placeTower(50, this, 'mines', 'gnome-mines-owned', 'gnome-mines-price')">
+                    <div id = "gnome-mines" class = "unbuyable" onclick = "placeTower(50, this, 'mines', 'gnome-mines-owned', 'gnome-mines-price', 'current-effects-gnome-mines', 'gnomes', 1.05)">
                         <h3>gnome mines</h3>
                         <i>mines for gnomes to work in. Stuffy, but nicely scented.</i>
                         <h4>buffs: 5% more cookies from gnomes per mine owned</h4>
-                        <p id = "current-effects-gnome-mines">current effects: generating 0 additional cookies per second from gnomes</p>
+                        <p id = "current-effects-gnome-mines">current effects: multiplying cookie output from gnomes by 1</p>
                         <h2 id = "gnome-mines-price">Price: 50 cookies</h2>
                         <h3 id = "gnome-mines-owned">owned: none</h3>
                     </div>
-                    <div id = "eldrich-god" class = "towers" onclick = "placeTower(600, this, 'eGods', 'e-gods-owned', 'e-gods-price')">
+                    <div id = "eldrich-god" class = "towers" onclick = "placeTower(400, this, 'eGods', 'e-gods-owned', 'e-gods-price', 'null', 'null', 'null')">
                         <h3>Eldrich God</h3>
                         <i>an Eldrich God from another dimension</i>
                         <h4>stats: 10 cps</h4>
@@ -174,7 +185,7 @@
                         <h2>Price: 750 cookies</h2>
                         <h3 id = "c-merch-owned">owned: none</h3>
                     </div>
-                    <div id = "cookie-holes" class = "towers" onclick = "placeTower(200000, this, 'holes', 'holes-owned', 'holes-price')">
+                    <div id = "cookie-holes" class = "towers" onclick = "placeTower(5000, this, 'holes', 'holes-owned', 'holes-price', 'null', 'null', 'null')">
                         <h3>Cookie Holes</h3>
                         <i>a mysterious hole in the ground with tons of cookies inside</i>
                         <h4>stats: 100 cps</h4>
@@ -182,7 +193,7 @@
                         <h2 id = "holes-price">Price: 5,000 cookies</h2>
                         <h3 id = "holes-owned">owned: none</h3>
                     </div>
-                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(100000, this, 'pyr', 'pyrs-owned', 'pyr-price')">
+                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(100000, this, 'pyr', 'pyrs-owned', 'pyr-price', 'null', 'null', 'null')">
                         <h3>Cookie Pyramid Scheme</h3>
                         <i>while immoral, its an easy way to make money.</i>
                         <h4>stats: 50 cps</h4>
@@ -190,15 +201,16 @@
                         <h2 id = "pyr-price">Price: 100,000 cookies</h2>
                         <h3 id = "pyrs-owned">owned: none</h3>
                     </div>
-                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(3000, this, 'pyr-vict', 'pyrvict-owned', 'pyrvict-price')">
+                    <div id = "cookie-pyr" class = "towers" onclick = "placeTower(3000, this, 'pyr-vict', 'pyrvict-owned', 'pyrvict-price', 'current-effects-pyr-victs', 'pyr', 1.1)">
                         <h3>Cookie Pyramid Scheme Victim</h3>
                         <i>poor suckers who were more than happy to pledge their cookies to you.</i>
                         <h4>stats: none</h4>
                         <h4>buffs: 1.1x Pyramid Scheme cps</h4>
+                        <p id = "current-effects-pyr-victs">current effects: multiplying cookie output from pyramid schemes by 1</p>
                         <h2 id = "pyrvict-price">Price: 3,000 cookies</h2>
                         <h3 id = "pyrvict-owned">owned: none</h3>
                     </div>
-                    <div id = "ant" class = "towers" onclick = "placeTower(10000000, this, 'ant', 'ant-owned', 'ant-price')">
+                    <div id = "ant" class = "towers" onclick = "placeTower(1000000, this, 'ant', 'ant-owned', 'ant-price')">
                         <h3>Ant</h3>
                         <i>just an ant</i>
                         <h4>stats: 10,000 cps</h4>

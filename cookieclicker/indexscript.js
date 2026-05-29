@@ -1,5 +1,6 @@
 let cps = 0;
 let z = false;
+let newPrice = 0;
 
 
 let towersOwnedDict = {
@@ -22,6 +23,15 @@ let multsActiveDict = {
     5:0,
 }
 
+let multsActiveHumanize = {
+    1:"cookies per click multiplier",
+    2:"extra cookies per click",
+    3:"total cps multiplier",
+    4:"clicks per click multiplier",
+    5:"extra clicks per click multiplier",
+
+}
+
 //1=cookies per click mult
 //2= extra cookies per click
 //3=total cps mult
@@ -35,7 +45,6 @@ let specialUUnlockedDict = {
 
 
 let clicks = 0;
-
 let cookies = 0;
 let cookie = document.getElementById("cookie");
 let cookieDisplay = document.getElementById("cookienum");
@@ -82,17 +91,21 @@ function cookiePressed(x, y) {
     }, 1500);
 }
 
-function placeTower(basePrice, elem, name, ownedDisplayId, priceDisplayId) {
+function placeTower(basePrice, elem, name, ownedDisplayId, priceDisplayId, currentEffectsId, affectedTower, buffs) {
     if (elem.classList.contains("unbuyable") == false && cookies >= basePrice*(1.2**towersOwnedDict[name])) {
         cookies = cookies - basePrice*(1.2**towersOwnedDict[name]);
 
         towersOwnedDict[name] = towersOwnedDict[name] + 1;
 
+        if (currentEffectsId != "null") {
+            document.getElementById(currentEffectsId).innerHTML = "current effects: multiplying cookie output from " + affectedTower + " by ~" + (buffs**towersOwnedDict[name]).toFixed(3)
+        }
+
         document.getElementById(ownedDisplayId).innerHTML = "owned: " + towersOwnedDict[name];
         document.getElementById(priceDisplayId).innerHTML = "Price: " + Math.floor(basePrice*(1.2**towersOwnedDict[name])) + " cookies";
 
-        let newPrice = basePrice*(1.2**towersOwnedDict[name])
-        for (i = 0;i<newPrice.length();i++) {
+        newPrice = basePrice*(1.2**towersOwnedDict[name])
+        for (i = 0;i<newPrice.length;i++) {
             if (i%3 == 0) {
                 
             }
@@ -115,14 +128,11 @@ setInterval(function(){
     gnomeMines = document.getElementById("gnome-mines");
     cpsDisplay = document.getElementById("cps-display");
     clicksDisplay = document.getElementById("clicks-display");
-    gnomeMinesCurrentEffects = document.getElementById("current-effects-gnome-mines");
 
     cps = (multsActiveDict[3])*((towersOwnedDict["gnomes"]*0.5)*(towersOwnedDict["mines"]*20/100)+(towersOwnedDict["gnomes"]*0.5)+(towersOwnedDict["eGods"]*10)+(towersOwnedDict["holes"]*100)+((1.1*towersOwnedDict["pyr-vict"])*(50*towersOwnedDict["pyr"]))+towersOwnedDict["ant"]*10000+towersOwnedDict["chemt"]*60000+towersOwnedDict["ovens"]*700000);
 
 
     cpsDisplay.innerHTML = Math.round(10*cps)/10;
-
-    gnomeMinesCurrentEffects.innerHTML = "current effects: generating " + Math.floor((towersOwnedDict["gnomes"]*0.2)*(10/100*towersOwnedDict["mines"])) + " additonal cookies from gnomes";
 
     cookies = (cps/100)+cookies;
     document.getElementById("cookienum").innerHTML = Math.floor(cookies);
@@ -358,6 +368,41 @@ function hdayclick() {
 
 function gamdice() {
     let randMult = Math.floor(Math.random()*4)+1
-    let multEffect = Math.random()*2.1
+    let multEffect = Math.random()*3
     multsActiveDict[randMult] = multsActiveDict[randMult] * multEffect
+
+     let rand_num = Math.floor(Math.random()*1000);
+
+    let new_div = document.createElement("div");
+    new_div.id = "gamdiced" + rand_num;
+    new_div.classList.add("gamdiced");
+    document.body.appendChild(new_div);
+    let test_div = document.querySelector("#rand"+rand_num);
+
+    new_div.innerHTML = multsActiveHumanize[randMult] + " was multiplied by ~" + multEffect.toFixed(3) + " making it ~" + multsActiveDict[randMult].toFixed(3)
+
+
+    setTimeout(() => {
+        new_div.remove();
+    }, 5000);
+}
+
+function gamloadeddice() {
+    let randMult = Math.floor(Math.random()*4)+1
+    multsActiveDict[randMult] = multsActiveDict[randMult] * 1.1
+
+     let rand_num = Math.floor(Math.random()*1000);
+
+    let new_div = document.createElement("div");
+    new_div.id = "gamloaddiced" + rand_num;
+    new_div.classList.add("gamloaddiced");
+    document.body.appendChild(new_div);
+    let test_div = document.querySelector("#rand"+rand_num);
+
+    new_div.innerHTML = multsActiveHumanize[randMult] + " was increased by 10%, making it ~" + multsActiveDict[randMult].toFixed(3)
+
+
+    setTimeout(() => {
+        new_div.remove();
+    }, 5000);
 }

@@ -237,3 +237,26 @@
     display:none;
 }
 
+.gamdiced {
+    position: absolute;
+    top:50%;
+    left:30%;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    padding:30px;
+}
+
+#gam-loaded-dice-icon {
+    filter:invert();
+}
+
+.gamloaddiced {
+    position: absolute;
+    top:50%;
+    left:30%;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    padding:30px;
+}
